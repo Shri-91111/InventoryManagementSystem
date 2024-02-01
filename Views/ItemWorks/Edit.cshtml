@@ -1,0 +1,93 @@
+﻿@model IMS.Models.ItemWork
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<head>
+    <style>
+        .form-control {
+            border: 3px solid #76a3d1;
+        }
+
+        footer {
+            display: none;
+        }
+    </style>
+</head>
+<br />
+<h4 id="Hader4">Edit ItemWork</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ItemDesc" class="control-label">Item desc</label>
+                <textarea asp-for="ItemDesc" class="form-control"></textarea>
+                <span asp-validation-for="ItemDesc" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="TypeId" class="control-label">Type</label>
+                <select name="TypeId" class="form-control">
+                    <option value="">Select Type</option>
+                    @foreach (var type in ViewBag.type)
+                    {
+                        <option value="@type.Id">@type.Description</option>
+                    }
+                </select>
+                <span asp-validation-for="TypeId" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="VendoId" class="control-label">Vendor</label>
+                <select name="VendorId" class="form-control">
+                    <option value="">Select Vendor</option>
+                    @foreach (var vendor in ViewBag.vendormaster)
+                    {
+                        <option value="@vendor.VendorId">@vendor.VendorName</option>
+                    }
+                </select>
+                <span asp-validation-for="VendoId" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="NumOfQuantity" class="control-label">number of quantity</label>
+                <input asp-for="NumOfQuantity" class="form-control" />
+                <span asp-validation-for="NumOfQuantity" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="PurchaseDate" class="control-label">purchase date</label>
+                <input asp-for="PurchaseDate" class="form-control" type="date" />
+                <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="ThroghId" class="control-label">Through </label>
+                <select name="throghid" class="form-control">
+                    <option value="">Select Throgh</option>
+                    @foreach (var throgh in ViewBag.throghmst)
+                    {
+                        <option value="@throgh.Id">@throgh.FromDesc</option>
+                    }
+                </select>
+                <span asp-validation-for="ThroghId" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label">Amount</label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="Tax" class="control-label">Tax</label>
+                <input asp-for="Tax" class="form-control" />
+                <span asp-validation-for="Tax" class="text-danger"></span>
+            </div><br />
+                <input type="submit" value="Save" class="btn btn-primary" />
+          
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

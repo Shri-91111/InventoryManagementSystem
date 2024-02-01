@@ -1,0 +1,63 @@
+﻿@model IEnumerable<IMS.Models.IssuedMasterViewModel>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<br/>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Product Name
+            </th>
+           
+            <th>
+                Issued Date
+            </th>
+            <th>
+                No of Quantity issued
+            </th>
+            <th>
+               Remaining Quantity 
+            </th>
+            <th>
+               Issued person name
+            </th>
+            <th>
+                Issued person Designation
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.IssuedMasterData)
+        {
+            <tr>
+                <td>
+                    @item.ProductName
+                </td>
+               
+                <td>
+                    @item.IssuedDate
+                </td>
+                <td>
+                    @item.Rol
+                </td><td>
+                    @item.remainingquantity
+                </td>
+                <td>
+                    @item.issuedperson
+                </td>
+                <td>
+                    @item.issuedpersondes
+                </td>
+               @*  <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td> *@
+            </tr>
+        }
+    </tbody>
+</table>

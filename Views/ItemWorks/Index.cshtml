@@ -1,0 +1,85 @@
+﻿@model IEnumerable<IMS.Models.ItemWork>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Item Name
+            </th>
+            <th>
+              Item desc
+            </th>
+            <th>
+               type
+            </th>
+            <th>
+                vendor
+            </th>
+            <th>
+              no of quantity
+            </th>
+            <th>
+                Purchase Date
+            </th>
+            <th>
+              throgh 
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                GST in (%)
+            </th>
+           @*  <th></th> *@
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.result!=null)
+            @foreach (var item in ViewBag.result)
+            {
+        <tr>
+          <td>
+                        @item.Fifthrelated.ProductName
+          </td>
+            <td>
+                        @item.Sixthrelated.SubProdcutDesc
+            </td>
+            <td>
+                        @item.ThirdRelated.Description
+            </td>
+            <td>
+               @item.SecondRelated.VendorName
+            </td>
+            <td>
+                        @item.Item.NumOfQuantity
+            </td>
+            <td>
+                        @item.Item.PurchaseDate.ToString("dd-MM-yyyy")
+            </td>
+            <td>
+                        @item.FirstRelated.FromDesc
+            </td>
+                <td>
+                        @item.Item.Amount
+                </td>
+                <td>
+                        @item.Fourthtable.PercentageDesc
+                </td>
+         @*    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Item.Id">Details</a> |
+               
+            </td> *@
+        </tr>
+}
+    </tbody>
+</table>

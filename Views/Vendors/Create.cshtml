@@ -1,0 +1,112 @@
+﻿@model IMS.Models.Vendor
+@using System.Linq;
+@{
+    ViewData["Title"] = "Create";
+}
+<style>
+    .form-control {
+        border: 2px solid #5551ff;
+        border-radius: 5px;
+        height: 50px;
+        line-height: normal;
+        color: black;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        user-select: auto;
+        font-size: 16px;
+        padding: 0 6px;
+        padding-left: 12px;
+    }
+
+        .form-control:focus {
+            border: 3px solid #5551ff;
+        }
+</style>
+<br />
+
+<h5 id="Hader4">Create Vendor</h5>
+<hr />
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="VendorName" class="control-label">Vendor Name</label>
+                <input asp-for="VendorName" class="form-control" />
+                <span asp-validation-for="VendorName" class="text-danger"></span>
+            </div><br />
+
+            <div class="form-group">
+                <label asp-for="VendorAddress" class="control-label">Vendor Address</label>
+                <textarea asp-for="VendorAddress" class="form-control"></textarea>
+
+                <span asp-validation-for="VendorAddress" class="text-danger"></span>
+            </div><br />
+
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label">Phone Number</label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div><br />
+
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label">Email address</label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-info" style="background-color:#76a3d1;font-weight:bold" />
+            </div>
+        </form>
+
+        <br />
+        <h2>Vendor List</h2>
+
+        @if (ViewBag.vendors != null )
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Serial No.</th>
+                     
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                        <th>Email Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int serialNumber = 1;
+                    }
+                    @foreach (var vendor in ViewBag.vendors)
+                    {
+                        <tr>
+                            <td>@serialNumber</td>
+                           
+                            <td>@vendor.VendorName</td>
+                            <td>@vendor.VendorAddress</td>
+                            <td>@vendor.PhoneNumber</td>
+                            <td>@vendor.EmailAddress</td>
+                        </tr>
+                        serialNumber++;
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No vendors available.</p>
+        }
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index" style="background-color:#76a3d1font-weight:bold" class="btn btn-info">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

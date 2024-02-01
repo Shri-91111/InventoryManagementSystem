@@ -1,0 +1,83 @@
+﻿@model IMS.Models.ProductMaster
+
+@{
+    ViewData["Title"] = "Create";
+}
+<style>
+    .form-control {
+        border: 2px solid #5551ff;
+        border-radius: 5px;
+        height: 50px;
+        line-height: normal;
+        color: black;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        user-select: auto;
+        font-size: 16px;
+        padding: 0 6px;
+        padding-left: 12px;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border: 2px solid #5551ff;
+        }
+</style>
+<br />
+<h5 id="Hader4">Create Item Work</h5>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label">Item Name</label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div><br/>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<h2>ProductMaster List</h2>
+
+@if (ViewBag.productMasters != null && ViewBag.productMasters.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Serial No.</th>
+                
+                <th>Product Name</th>
+             
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int serialNumber = 1;
+            }
+            @foreach (var productMaster in ViewBag.productMasters)
+            {
+                <tr>
+                    <td>@serialNumber</td>
+                   
+                    <td>@productMaster.ProductName</td>
+                  
+                </tr>
+                serialNumber++;
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No ProductMasters available.</p>
+}
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

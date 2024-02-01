@@ -1,0 +1,108 @@
+﻿@model IssuedReportsViewModel
+@{
+    ViewData["Title"] = "IssuedReports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style>
+        .form-control {
+            border: 2px solid #5551ff;
+            border-radius: 5px;
+            height: 50px;
+            line-height: normal;
+            color: black;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            user-select: auto;
+            font-size: 16px;
+            padding: 0 6px;
+            padding-left: 12px;
+        }
+
+            .form-control:focus {
+                border: 3px solid #5551ff;
+            }
+
+    </style>
+</head>
+<body>
+    <br />
+    <h5 id="Hader4">Issued Reports</h5>
+    <div class="card card-body">
+        @using (Html.BeginForm("IssuedReports", "Reports", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CategoryId, "Category Name")
+                        @Html.DropDownListFor(model => model.CategoryId, (IEnumerable<SelectListItem>)ViewData["Category"], "Select Category", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductId, "Product Name")
+                        @Html.DropDownListFor(model => model.ProductId, (IEnumerable<SelectListItem>)ViewData["Product"], "Select Product", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                </div><br/>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <button class="btn btn-info" type="submit">Fetch Reports</button>
+                    </div>
+                </div>
+            </div>
+           
+        }
+     
+    </div>
+    @if (Model.IssuedMasterList != null && Model.IssuedMasterList.Any())
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>serial number</th>
+                    <th>Name</th>
+                    <th>Issued Date Time</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int serialno = 1;
+                }
+                @foreach (var item in Model.IssuedMasterList)
+                {
+                    <tr>
+                        <td>@serialno</td>
+                        <td>@(item?.Name ?? "N/A") - @(item?.Designation?? "N/A")</td>
+                        <td>@(item?.IssuedDateTime?.ToString("dd-MM-yyyy") ?? "N/A")</td>
+                        <td>@(item?.Description ?? "N/A")</td>
+                        <td>@(item?.Quantity ?? 0)</td>
+                       
+                    </tr>
+                    serialno++;
+                }
+            </tbody>
+        </table>
+    }
+    else 
+    {
+        <p>No records found.</p>
+    }
+
+</body>
+

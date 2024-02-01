@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        * {
+            text-decoration: auto;
+            text-justify: inter-character;
+            font-weight:700;
+             font-family:Calibri;
+             font-size:20px;
+        }
+
+        label {
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            color: navy;
+        }
+
+        button {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid navy;
+        }
+
+        #signupLogo {
+            max-height: 100px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            background-color: navy;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        #header1 {
+            background: linear-gradient(135deg, navy(0, 119, 238), navy);
+            background-image: linear-gradient(to right, navy 0%, navy 0%, navy 100%);
+            background-size: cover;
+            padding: 20px 0;
+        }
+
+            #header1 .container-fluid {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+
+        #headerTitle {
+            color: navy;
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'Nirmala UI', Arial, sans-serif;
+        }
+        /* Styling for input type text */
+        input[type="text"] {
+            font-size:large;
+        }
+
+        /* Styling for select element */
+        select {
+            font-size: large;
+        }
+
+           
+
+        #address {
+            font-size: 0.8rem;
+            color: #333;
+            margin-top: 5px;
+        }
+        #address {
+            font-size: 19px;
+            font-weight: bold;
+            color: navy;
+            font-family: 'Nirmala UI', Arial, sans-serif;
+        }
+
+        #Hader4 {
+            background-color: navy;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            color: white;
+            border: 2px solid navy;
+            padding: 10px;
+            border-radius: 10px;
+            letter-spacing: 0.1em;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - IMS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/IMS.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<body>
+    <header id="header1">
+        <nav b-rp48qunuld class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div b-rp48qunuld class="container-fluid">
+                <!-- Logo -->
+             
+                <img src="~/rguhs logo copy.png" id="signupLogo" />
+                <!-- Title and Address -->
+
+                <div b-rp48qunuld class="header-content">
+                    <!-- Title in English -->
+                    <h4 b-rp48qunuld id="headerTitle">ರಾಜೀವ್ ಗಾಂಧಿ ಆರೋಗ್ಯ ವಿಜ್ಞಾನಗಳ ವಿಶ್ವವಿದ್ಯಾಲಯ, ಕರ್ನಾಟಕ</h4>
+                    <h4 b-rp48qunuld id="headerTitle">Rajiv Gandhi University of Health Sciences, Karnataka</h4>
+                    <!-- Title in Kannada -->
+                  
+
+                    <!-- Address in English -->
+                    <h5 b-rp48qunuld id="address">4ನೇ 'ಟಿ' ಬ್ಲಾಕ್, ಜಯನಗರ, ಬೆಂಗಳೂರು - 560 041</h5>
+                    <h5 b-rp48qunuld id="address">4th 'T' Block, Jayanagar, Bangalore - 560 041</h5>
+                    <!-- Address in Kannada -->
+                  
+                </div>
+
+                <div b-rp48qunuld class="col-auto">
+                    <a b-rp48qunuld href="@Url.Action("Dashboard","Home")" class="text-decoration-none">
+                        <i b-rp48qunuld class="fas fa-home fa-2x mr-2" style="color: navy;margin-left:210px"></i>
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a b-rp48qunuld href="#" id="logoutLink">
+                        <i b-rp48qunuld class="fas fa-sign-out-alt fa-2x mr-2" style="color: navy;"></i>
+                    </a>
+                </div>
+
+                <form id="logoutForm" method="post" hidden action="@Url.Action("logout","Login")">
+                    <button b-rp48qunuld type="submit" id="logoutButton"></button>
+                    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8GAo93F9lalDmRT0N2tfoGUL5dWyK1IjQGtF2h0kITYkisiujbEfZPG7wzGzK7KBMAURc4XDYx5blvOCruSelYII38fM6kP50ya_q_C3FPeLLw9dOMJc_cTI8Pbka-mDDtGu_LEL7ERbBCvKl7pajIo" />
+                </form>
+
+                <script>
+                    document.getElementById("logoutLink").addEventListener("click", function (event) {
+                        event.preventDefault();
+                        document.getElementById("logoutForm").submit();
+                    });
+                </script>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - IMS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

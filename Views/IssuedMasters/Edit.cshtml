@@ -1,0 +1,64 @@
+﻿@model IMS.Models.IssuedMaster
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    .form-control {
+        border: 2px solid #5551ff;
+        border-radius: 5px;
+        height: 50px;
+        line-height: normal;
+        color: black;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        user-select: auto;
+        font-size: 16px;
+        padding: 0 6px;
+        padding-left: 12px;
+    }
+
+        .form-control:focus {
+            border: 3px solid #5551ff;
+        }
+</style>
+<h4>IssuedMaster</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div><br/>
+            <div class="form-group">
+                <label asp-for="DeptType" class="control-label"></label>
+                <input asp-for="DeptType" class="form-control" />
+                <span asp-validation-for="DeptType" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="IssuedDate" class="control-label"></label>
+                <input asp-for="IssuedDate" class="form-control" />
+                <span asp-validation-for="IssuedDate" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="Rol" class="control-label"></label>
+                <input asp-for="Rol" class="form-control" />
+                <span asp-validation-for="Rol" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

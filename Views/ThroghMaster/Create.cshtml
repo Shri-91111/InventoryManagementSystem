@@ -1,0 +1,80 @@
+﻿@model IMS.Models.ThroghMaster
+
+@{
+    ViewData["Title"] = "Create";
+}
+<style>
+    .form-control {
+        border: 2px solid #5551ff;
+        border-radius: 5px;
+        height: 50px;
+        line-height: normal;
+        color: black;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        user-select: auto;
+        font-size: 16px;
+        padding: 0 6px;
+        padding-left: 12px;
+    }
+
+        .form-control:focus {
+            border: 3px solid #5551ff;
+        }
+</style>
+<br />
+
+<h4 id="Hader4">Throgh Master</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FromDesc" class="control-label"></label>
+                <input asp-for="FromDesc" class="form-control" />
+                <span asp-validation-for="FromDesc" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-info" />
+            </div>
+        </form>
+    </div>
+</div>
+<h2>ThroghMaster List</h2>
+
+@if (ViewBag.throghMasters != null )
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Serial No.</th>
+             
+                <th>From Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int serialNumber = 1;
+            }
+            @foreach (var throghMaster in ViewBag.throghMasters)
+            {
+                <tr>
+                    <td>@serialNumber</td>
+                  
+                    <td>@throghMaster.FromDesc</td>
+                </tr>
+                serialNumber++;
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No ThroghMasters available.</p>
+}
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

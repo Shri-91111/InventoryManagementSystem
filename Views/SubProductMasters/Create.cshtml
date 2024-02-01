@@ -1,0 +1,85 @@
+﻿@model IMS.Models.SubProductMaster
+
+@{
+    ViewData["Title"] = "Create";
+}
+<style>
+    .form-control {
+        border: 2px solid #5551ff;
+        border-radius: 5px;
+        height: 50px;
+        line-height: normal;
+        color: black;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        user-select: auto;
+        font-size: 16px;
+        padding: 0 6px;
+        padding-left: 12px;
+    }
+
+        .form-control:focus {
+            border: 3px solid #5551ff;
+        }
+
+</style>
+<br />
+<h5 id="Hader4">Create Item Description</h5>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SubProdcutDesc" class="control-label">Sub product Description</label>
+                <input asp-for="SubProdcutDesc" class="form-control" />
+                <span asp-validation-for="SubProdcutDesc" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="Pid" class="control-label">Main product</label>
+                <select asp-for="Pid" class ="form-control" asp-items="ViewBag.Pid">
+                    <option value="">--Select Item--</option>
+                </select>
+            </div><br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@if (ViewBag.subProductMasters != null )
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Serial No.</th>
+           
+                <th>SubProduct Description</th>
+                <th>Product Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int serialNumber = 1;
+            }
+            @foreach (var subProductMaster in ViewBag.subProductMasters)
+            {
+                <tr>
+                    <td>@serialNumber</td>
+                    <td>@subProductMaster.SubProdcutDesc</td>
+                    <td>@(subProductMaster.PidNavigation?.ProductName ?? "N/A")</td>
+                </tr>
+                serialNumber++;
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No SubProductMasters available.</p>
+}
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,61 @@
+﻿@model IMS.Models.TaxMaster
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TaxMaster</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PercentageDesc" class="control-label">Percentage</label>
+                <input asp-for="PercentageDesc" class="form-control" />
+                <span asp-validation-for="PercentageDesc" class="text-danger"></span>
+            </div><br/>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@if (ViewBag.taxMasters != null )
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Serial No.</th>
+           
+                <th>Percentage Description</th>
+             
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int serialNumber = 1;
+            }
+            @foreach (var taxMaster in ViewBag.taxMasters)
+            {
+                <tr>
+                    <td>@serialNumber</td>
+                   
+                    <td>@taxMaster.PercentageDesc</td>
+                
+                </tr>
+                serialNumber++;
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No TaxMasters available.</p>
+}
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

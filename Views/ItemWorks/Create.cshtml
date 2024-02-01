@@ -1,0 +1,133 @@
+﻿@model ItemWork
+@{
+    ViewData["Title"] = "ItemWork";
+}
+<style>
+    .form-control {
+        border: 2px solid #5551ff;
+        border-radius: 5px;
+        height: 50px;
+        line-height: normal;
+        color: black;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        user-select: auto;
+        font-size: 16px;
+        padding: 0 6px;
+        padding-left: 12px;
+    }
+
+        .form-control:focus {
+            border: 3px solid #5551ff;
+        }
+
+</style>
+<br />
+<h5 id="Hader4">Create Item Work</h5>
+<hr />
+<body>
+<div class="card border-primary mb-3">
+<div class="row">
+        <div class="col-md-2"></div>
+    <div class="col-md-6">
+        <form asp-action="Create"  method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Pid" class="control-label">Item Name</label>
+                        <select asp-for="Pid" class="form-control" asp-items="ViewBag.Pid" id="Pid">
+                            <option value="">--Select Item--</option>
+                        </select>
+                <span asp-validation-for="Pid" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="ItemDesc" class="control-label">Item desc</label>
+                        <select asp-for="ItemDesc" class="form-control" asp-items="ViewBag.SubItemid" id="Subtypeid">
+                            <option value="">--Select Item Desc--</option>
+                        </select>
+                <span asp-validation-for="ItemDesc" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="TypeId" class="control-label">Type</label>
+                        <select name="TypeId" class="form-control" id="mainitems" onchange="onchangenow(this)">
+                    <option value="">Select Type</option>
+                    @foreach (var type in ViewBag.type)
+                    {
+                        <option value="@type.Id">@type.Description</option>
+                    }
+                </select>
+                <span asp-validation-for="TypeId" class="text-danger"></span>
+            </div><br />
+            
+            <div class="form-group">
+                <label asp-for="VendoId" class="control-label">Vendor</label>
+                <select name="VendoId" class="form-control">
+                    <option value="">Select Vendor</option>
+                    @foreach (var vendor in ViewBag.vendormaster)
+                    {
+                        <option value="@vendor.VendorId">@vendor.VendorName</option>
+                    }
+                </select>
+                <span asp-validation-for="VendoId" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="NumOfQuantity" class="control-label">number of quantity</label>
+                <input asp-for="NumOfQuantity" class="form-control" />
+                <span asp-validation-for="NumOfQuantity" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="PurchaseDate" class="control-label">purchase date</label>
+                <input asp-for="PurchaseDate" class="form-control" type="date" />
+                <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="ThroghId" class="control-label">Through </label>
+                <select name="ThroghId" class="form-control">
+                    <option value="">Select Throgh</option>
+                    @foreach (var throgh in ViewBag.throghmst)
+                    {
+                        <option value="@throgh.Id">@throgh.FromDesc</option>
+                    }
+                </select>
+                <span asp-validation-for="ThroghId" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label">Amount(Without tax)</label>
+                        <input asp-for="Amount" class="form-control" id="amount" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="Tax" class="control-label">Tax(%)</label>
+                        <select asp-for="Tax" class="form-control" asp-items="ViewBag.Taxid" id="tax">
+                            <option value="">--Select tax--</option>
+                        </select>
+                <span asp-validation-for="Tax" class="text-danger"></span>
+            </div><br />
+
+                    <div class="form-group">
+                        <label class="control-label">Total Amount</label>
+                        <div id="totalAmount" class="form-control" ></div>
+                    </div>
+               
+                    @Html.Hidden("GetSubitem", Url.Action("GetSubItems", "ItemWorks"))
+                 <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+
+        <br/>
+
+    </div>
+</div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+</body>
+
+
+
+@section Scripts{
+<!-- Your custom script -->
+<script type="text/javascript" src="~/js/itemwork.js"></script>
+
+}
+

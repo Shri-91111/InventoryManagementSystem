@@ -1,0 +1,157 @@
+﻿@model IMS.Models.IssuedMaster
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<head>
+    <style>
+        .form-control {
+            border: 2px solid #5551ff;
+            border-radius: 5px;
+            height: 50px;
+            line-height: normal;
+            color: black;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            user-select: auto;
+            font-size: 16px;
+            padding: 0 6px;
+            padding-left: 12px;
+        }
+
+            .form-control:focus {
+                border: 3px solid #5551ff;
+            }
+        
+
+
+        footer {
+            display: none;
+        }
+
+        button {
+            width: 200px;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+        }
+
+        .button-box-special {
+            background: black;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        .ten {
+            background: white;
+            color: black;
+            border: 2px solid blue;
+            border-radius: 5px;
+            transition: all 300ms;
+        }
+
+            .ten:hover {
+                color: black;
+                border: 2px solid black;
+                border-radius: 50px;
+                background-color: rgb(100,150,250);
+            }
+    </style>
+</head>
+<br />
+<h4 id="Hader4">Issued product</h4>
+<hr />
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label">Product name</label>
+                <select name="ProductName" class="form-control" id="product" onchange="loadNoOfQuantity()">
+                    <option value="">Select Type</option>
+                    @foreach (var type in ViewBag.IssuedMasters)
+                    {
+                        <option value="@type.Value">@type.Text </option>
+                    }
+                </select>
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div><br />
+            <div id="result">Selected option's no Of Quantity will be displayed here.</div><br/>
+          
+
+            <div id="result1">Item Category:.</div><br />
+            <div class="form-group">
+                <label asp-for="IssuedDate" class="control-label">issued date</label>
+                <input asp-for="IssuedDate" class="form-control" type="date" />
+                <span asp-validation-for="IssuedDate" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="Rol" class="control-label">No of quantity issued</label>
+                <input asp-for="Rol" class="form-control" type="number"/>
+                <span asp-validation-for="Rol" class="text-danger"></span>
+            </div><br/>
+            <div class="form-group">
+                <label asp-for="IssuedPerson" class="control-label">issued person</label>
+                <select name="IssuedPerson" class="form-control">
+                    <option value="">Select Employee</option>
+                    @foreach (var type in ViewBag.Employees)
+                    {
+                        <option value="@type.Fempcode">@type.Fempname</option>
+                    }
+                </select>
+                <span asp-validation-for="IssuedPerson" class="text-danger"></span>
+            </div><br/>
+            <div class="form-group">
+                <label asp-for="IssuedPersonDesigntion" class="control-label"> issued person Designation</label>
+                <select name="IssuedPersonDesigntion" class="form-control">
+                    <option value="">Select Designation</option>
+                    @foreach (var type in ViewBag.Desig)
+                    {
+                        <option value="@type.Fdesigcode">@type.Fdesigname</option>
+                    }
+                </select>
+                <span asp-validation-for="IssuedPersonDesigntion" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="BookNumber" class="control-label">Stock Book Number</label>
+                <input asp-for="BookNumber" class="form-control" type="text" />
+                <span asp-validation-for="BookNumber" class="text-danger"></span>
+            </div><br /> 
+            <div class="form-group">
+                <label asp-for="PageNumber" class="control-label"> Stock Page Number</label>
+                <input asp-for="PageNumber" class="form-control" type="text" />
+                <span asp-validation-for="PageNumber" class="text-danger"></span>
+            </div><br />
+            <div class="form-group">
+                <label asp-for="SerialNumber" class="control-label">Stock Page Serial  Number</label>
+                <input asp-for="SerialNumber" class="form-control" type="text" />
+                <span asp-validation-for="SerialNumber" class="text-danger"></span>
+            </div><br />
+
+            <div class="button-box">
+                <button type ="submit" class="ten">create</button>
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+   
+        <script src="~/js/issuedmaster.js"></script>
+    
+}
+
+
+
+
